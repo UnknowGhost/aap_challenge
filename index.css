@@ -1,0 +1,14 @@
+div  {
+    font-family: Arial;
+    text-align: center;
+}
+
+.names {
+    font-family: 'Bangers';
+    font-size: 35px;
+}
+
+a {
+    text-decoration: none;
+    color: #ff8400;
+}
