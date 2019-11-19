@@ -6,22 +6,18 @@
  * Time: 10:26
  */
 
-$apen[] = "Baviaan";
-$apen[] = "Guereza";
-$apen[] = "Langoer";
-$apen[] = "Tamarin";
-$apen[] = "Neusaap";
-$apen[] = "Halfaap";
-$apen[] = "Mandril";
-$apen[] = "Oeakari";
-$apen[] = "Faunaap";
-$apen[] = "Hoelman";
-$apen[] = "Meerkat";
-$apen[] = "Oormaki";
-$apen[] = "Gorilla";
-$apen[] = "Kuifaap";
-$apen[] = "Mensaap";
-$apen[] = "Spinaap";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db = "apen";
+
+$conn = new mysqli($servername, $username, $password, $db);
+
+if ($conn->connect_error) {
+    die("connection failed: " . $conn->connect_error);
+}
+
 
 ?>
 <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
@@ -35,14 +31,21 @@ $apen[] = "Spinaap";
 
 <?php
 
-    echo "<div class='names'>";
+    echo "<div class='names'> ";
 
-    foreach ($apen as $aap) {
+   $sql = "SELECT idaap, soort FROM aap";
+   $result = $conn->query($sql);
 
-        echo "<a href='https://www.google.nl/search?q=. $aap .&tbm=isch'> $aap <br/> </a>";
-    }
+   $soort = "SELECT soort FROM aap";
 
+   if($result->num_rows > 0) {
+       // output data each row
+       while ($row = $result->fetch_assoc()) {
+           echo $row["idaap"]." - " . $row["soort"]. "<br>";
+       }
+   } else {
+       echo "Results 0";
+   }
+   $conn->close();
 
-    echo "</div>";
-
-    ?>
+?>
