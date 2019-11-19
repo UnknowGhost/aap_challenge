@@ -33,13 +33,13 @@ if ($conn->connect_error) {
 
     echo "<div class='names'> ";
 
-   $sql = "SELECT idaap, soort FROM aap";
+   $sql = "SELECT idleefgebied, omschrijving FROM leefgebied";
    $result = $conn->query($sql);
 
    if($result->num_rows > 0) {
        // output data each row
        while ($row = $result->fetch_assoc()) {
-           echo "<a href='https://www.google.nl/search?q=" . $row["soort"] . "&tbm=isch'>". $row["idaap"] ." - ". $row["soort"] . "</a><br/>";
+           echo "<a href='https://www.google.nl/search?q=" . $row["omschrijving"] . "&tbm=isch'>". $row["idleefgebied"] ." - ". $row["omschrijving"] . "</a><br/>";
        }
    } else {
        echo "Results 0";
